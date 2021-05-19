@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Header from "./Header/Header";
+import Dashboard from "./Leads/Dashboard";
+import { Provider } from "react-redux";
+import store from "../reducers/store";
 
 const App = () => {
   const [fetchedData, setFecthedData] = useState(null);
@@ -16,7 +20,9 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Provider store={store}>
+      <Header />
+      <Dashboard />
       {fetchedData && (
         <ul>
           {fetchedData.map((contact) => {
@@ -28,7 +34,7 @@ const App = () => {
           })}
         </ul>
       )}
-    </>
+    </Provider>
   );
 };
 
