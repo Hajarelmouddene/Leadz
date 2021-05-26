@@ -19,15 +19,12 @@ export const getLeads = (dispatch) => {
 export const deleteLead = (id, dispatch) => {
   fetch(`api/lead/${id}/`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
   })
-    .then((res) => res.json())
-    .then((data) => {
+    .then((res) => {
       dispatch({
         type: DELETE_LEAD,
         payload: id,
       });
-    });
+    })
+    .catch((err) => console.log(err));
 };

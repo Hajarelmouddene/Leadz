@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 
 const Leads = () => {
   const dispatch = useDispatch();
+  const leads = useSelector((state) => state.leads.leads);
+
   useEffect(() => {
     getLeads(dispatch);
   }, []);
-  const leads = useSelector((state) => state.leads.leads);
 
   return (
     <>
@@ -30,7 +31,13 @@ const Leads = () => {
                 <td>{lead.email}</td>
                 <td>{lead.message}</td>
                 <td>
-                  <button>Delete</button>
+                  <button
+                    onClick={() => {
+                      deleteLead(lead.id, dispatch);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

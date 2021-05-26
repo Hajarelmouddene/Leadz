@@ -1,7 +1,6 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import DefaultRouter
+from .views import LeadViewSet
 
-#Wire up LeadListCreate to api/lead
-urlpatterns = [
-    path('api/lead/', views.LeadListCreate.as_view())
-]
+router = DefaultRouter()
+router.register('api/lead', LeadViewSet, 'leads')
+urlpatterns = router.urls
